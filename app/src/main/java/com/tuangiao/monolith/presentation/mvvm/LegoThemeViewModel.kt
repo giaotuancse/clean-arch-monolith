@@ -1,9 +1,6 @@
 package com.tuangiao.monolith.presentation.mvvm
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.tuangiao.monolith.common.DataResult
 import com.tuangiao.monolith.domain.mapper.LegoThemeDomainUIMapper
 import com.tuangiao.monolith.domain.usecase.LegoThemeUseCase
@@ -22,7 +19,7 @@ class LegoThemeViewModel @Inject constructor(
     private val mapper: LegoThemeDomainUIMapper
 ) : ViewModel() {
 
-    lateinit var legoThemes: LiveData<DataResult<List<LegoThemeUIModel>>>
+    var legoThemes: LiveData<DataResult<List<LegoThemeUIModel>>> = MutableLiveData()
 
     init {
         viewModelScope.launch {
