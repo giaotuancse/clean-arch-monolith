@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private val legoThemeViewModel : LegoThemeViewModel by viewModels()
+    private val legoThemeViewModel: LegoThemeViewModel by viewModels()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -26,10 +26,8 @@ class HomeFragment : Fragment() {
     private lateinit var legoThemeAdapter: LegoThemeAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    )                                          : View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         legoThemeAdapter = LegoThemeAdapter();
@@ -41,6 +39,7 @@ class HomeFragment : Fragment() {
                     binding.loadingPb.visibility = View.GONE
                     Toast.makeText(context, it.exception.message, Toast.LENGTH_SHORT).show()
                 }
+
                 is DataResult.Success -> {
                     binding.loadingPb.visibility = View.GONE
                     legoThemeAdapter.submitList(it.data)

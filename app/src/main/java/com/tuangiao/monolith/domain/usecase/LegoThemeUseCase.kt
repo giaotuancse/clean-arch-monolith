@@ -15,14 +15,6 @@ class LegoThemeUseCase @Inject constructor(
     @IoDispatcher private val dispatcher: CoroutineDispatcher,
     private val mapper : LegoThemeDomainUIMapper
 ) {
-    val f2 = flow {
-        emit(listOf(3, 4))
-    }
-
-    val f3 = flow {
-        emit(listOf(5, 6))
-    }
-
 
     suspend fun getLegoThemes() = legoThemeRepository.getLegoThemes().flowOn(dispatcher)
 

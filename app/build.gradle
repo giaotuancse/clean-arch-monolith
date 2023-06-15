@@ -50,6 +50,7 @@ dependencies {
     // Material
     implementation "com.google.android.material:material:$material"
     implementation "androidx.recyclerview:recyclerview:$recyclerView"
+//    testImplementation 'org.junit.jupiter:junit-jupiter'
 
     // Leak Canary
     // debugImplementation because LeakCanary should only run in debug builds.
@@ -91,21 +92,22 @@ dependencies {
     implementation "androidx.room:room-ktx:$roomVersion"
 
     // Instrumented Unit Tests
-    androidTestImplementation "junit:junit:$junitVersion"
-    androidTestImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines") {
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines") {
         // conflicts with mockito due to direct inclusion of byte buddy
         exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug"
     }
     // Run Blocking Test
-    androidTestImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
+    testImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
     // Truth
-    androidTestImplementation "com.google.truth:truth:$truthVersion"
+    testImplementation "com.google.truth:truth:$truthVersion"
     // For small test - large test annotations
-    androidTestImplementation "androidx.test:runner:$testRunnerVersion"
+    testImplementation "androidx.test:runner:$testRunnerVersion"
     // Mock objects
-    androidTestImplementation "io.mockk:mockk-android:$mockkAndroidVersion"
+//    testImplementation "io.mockk:mockk-android:$mockkAndroidVersion"
+    testImplementation "io.mockk:mockk:$mockkVersion"
     // Test with Dagger Hilt
-    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+    testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
     kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
     debugImplementation "androidx.fragment:fragment-testing:$fragmentTestingVersion" // Create debug source set
     // Navigation Test
@@ -114,4 +116,7 @@ dependencies {
     androidTestImplementation("com.schibsted.spain:barista:$baristaVersion") {
         exclude group: 'org.jetbrains.kotlin' // Only if you already use Kotlin in your project
     }
+    // For Flow test
+    testImplementation "app.cash.turbine:turbine:$turbineVersion"
+
 }

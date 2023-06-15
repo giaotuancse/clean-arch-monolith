@@ -19,12 +19,10 @@ class LegoThemeDomainUIMapper @Inject constructor() :
     }
 
     fun transformDataResultFrom(input : DataResult<List<LegoThemeDomainModel>>): DataResult<List<LegoThemeUIModel>> {
-        when (input) {
-            is DataResult.Error -> return DataResult.Error(input.exception)
-            is DataResult.Loading -> return DataResult.Loading
-            is DataResult.Success -> return DataResult.Success(fromList(input.data))
+        return when (input) {
+            is DataResult.Error -> DataResult.Error(input.exception)
+            is DataResult.Loading -> DataResult.Loading
+            is DataResult.Success -> DataResult.Success(fromList(input.data))
         }
-
-
     }
 }
